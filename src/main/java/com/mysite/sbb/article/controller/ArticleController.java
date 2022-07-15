@@ -17,7 +17,14 @@ public class ArticleController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Article> showList(){
+    public List<Article> showList(){ //단건이 아니니까 배열로 받는다.
         return articleRepository.findAll();
+    }
+
+    // 단건조회
+    @RequestMapping("/detail")
+    @ResponseBody
+    public Article showArticle(){ // 단건 조회는 배열로 받을 필요가 없음
+        return articleRepository.findById(1L).get();
     }
 }
