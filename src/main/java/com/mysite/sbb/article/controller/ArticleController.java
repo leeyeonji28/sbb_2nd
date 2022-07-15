@@ -5,9 +5,11 @@ import com.mysite.sbb.article.domain.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/usr/article")
@@ -24,7 +26,10 @@ public class ArticleController {
     // 단건조회
     @RequestMapping("/detail")
     @ResponseBody
-    public Article showArticle(){ // 단건 조회는 배열로 받을 필요가 없음
-        return articleRepository.findById(1L).get();
+    public Article showArticle(@RequestParam long id){
+        Optional<Article> article =  articleRepository.findById(id);
+        return article.orElse(null); // article에 값이 있으면 반환하고 아니면 null을 반환하겠다!
     }
+
+
 }
