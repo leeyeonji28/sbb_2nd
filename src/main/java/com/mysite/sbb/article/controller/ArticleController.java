@@ -34,7 +34,7 @@ public class ArticleController {
     // 게시물 수정
     @RequestMapping("/doModify")
     @ResponseBody
-    public Article showModify(long id, String title, String body){
+    public Article doModify(long id, String title, String body){
         Article article =  articleRepository.findById(id).get();
         if (title != null){ // title 값이 null이 아니면 실행
             article.setTitle(title);
@@ -47,6 +47,15 @@ public class ArticleController {
         articleRepository.save(article);
 
         return article;
+    }
+
+    @RequestMapping("/doDelete")
+    @ResponseBody
+    public String doDelete(long id){ // 삭제할 때는 id값만 필요
+
+        articleRepository.deleteById(id);
+
+        return "%d번 게시물이 삭제되었습니다.".formatted(id);
     }
 
 }
