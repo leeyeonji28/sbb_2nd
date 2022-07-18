@@ -31,5 +31,22 @@ public class ArticleController {
         return article.orElse(null); // article에 값이 있으면 반환하고 아니면 null을 반환하겠다!
     }
 
+    // 게시물 수정
+    @RequestMapping("/doModify")
+    @ResponseBody
+    public Article showModify(long id, String title, String body){
+        Article article =  articleRepository.findById(id).get();
+        if (title != null){ // title 값이 null이 아니면 실행
+            article.setTitle(title);
+        }
+
+        if (body != null){ // body 값이 null이 아니면 실행
+            article.setBody(body);
+        }
+
+        articleRepository.save(article);
+
+        return article;
+    }
 
 }
