@@ -18,11 +18,35 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    // title, body로 검색
     @RequestMapping("/list")
     @ResponseBody
-    public List<Article> showList(){ //단건이 아니니까 배열로 받는다.
+    public List<Article> showArticleList(String title, String body) {
+        if(title != null && body == null) {
+            if(articleRepository.existsByTitle(title) == false) {
+                System.out.println("제목과 일치하는 게시물이 없습니다.");
+                return null;
+            }
+            return articleRepository.findByTitle(title);
+
+        } else if(title == null && body != null) {
+            if(articleRepository.existsByBody(body) == false) {
+                System.out.println("내용과 일치하는 게시물이 없습니다.");
+                return null;
+            }
+            return articleRepository.findByBody(body);
+
+        } else if(title != null && body != null) {
+            if(articleRepository.existsByTitleAndBody(title, body) == false) {
+                System.out.println("제목, 내용과 일치하는 게시물이 없습니다.");
+                return null;
+            }
+            return articleRepository.findByTitleAndBody(title, body);
+        }
+
         return articleRepository.findAll();
     }
+
 
     // 단건조회
     @RequestMapping("/detail")
@@ -52,6 +76,7 @@ public class ArticleController {
         return article;
     }
 
+    // 게시물 삭제
     @RequestMapping("/doDelete")
     @ResponseBody
     public String doDelete(long id){ // 삭제할 때는 id값만 필요
@@ -64,6 +89,7 @@ public class ArticleController {
         return "%d번 게시물이 삭제되었습니다.".formatted(id);
     }
 
+    // title로 검색
     @RequestMapping("/findByTitle")
     @ResponseBody
     public List<Article> findByTitle(String title){
