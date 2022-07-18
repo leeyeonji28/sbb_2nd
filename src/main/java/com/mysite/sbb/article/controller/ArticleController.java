@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,8 @@ public class ArticleController {
         if (body != null){ // body 값이 null이 아니면 실행
             article.setBody(body);
         }
+
+        article.setUpdateDate(LocalDateTime.now());
 
         articleRepository.save(article);
 
