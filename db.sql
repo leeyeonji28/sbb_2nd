@@ -93,3 +93,29 @@ INSERT INTO Question SET
 content = "content3";
 
 SELECT * FROM Question;
+
+# 답변 테이블 생성
+CREATE TABLE Answer(
+    id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    create_date DATETIME NOT NULL,
+    question_id INT(11) UNSIGNED NOT NULL
+);
+
+# 답변 데이터 생성
+INSERT INTO Answer SET
+create_date = NOW(),
+content = "answer1",
+question_id = 1;
+
+INSERT INTO Answer SET
+    create_date = NOW(),
+content = "answer2",
+question_id = 2;
+
+INSERT INTO Answer SET
+    create_date = NOW(),
+content = "answer3",
+question_id = 3;
+
+SELECT * FROM Answer;
