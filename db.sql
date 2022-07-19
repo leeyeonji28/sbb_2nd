@@ -67,3 +67,29 @@ update_date = NOW(),
 title = '제목 3',
 `body` = '내용 3',
 `user_id` = 3;
+
+# 질문 테이블 생성
+CREATE TABLE Question (
+    id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `subject` VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    create_date DATETIME NOT NULL
+);
+
+#질문 데이터 생성
+INSERT INTO Question SET
+    create_date = NOW(),
+`subject` = "question1",
+content = "content1";
+
+INSERT INTO Question SET
+    create_date = NOW(),
+`subject` = "question2",
+content = "content2";
+
+INSERT INTO Question SET
+    create_date = NOW(),
+`subject` = "question3",
+content = "content3";
+
+SELECT * FROM Question;
