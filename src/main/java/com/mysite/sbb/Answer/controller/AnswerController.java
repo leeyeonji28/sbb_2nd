@@ -24,6 +24,6 @@ public class AnswerController {
         Question question = this.questionService.getQuestion(id); // 질문 불러오기
         // 질문 만들기
         this.answerService.create(question, content);
-        return String.format("redirect:/question/detail%s", id);
+        return String.format("redirect:/question/detail/%s", id);
     }
 }
