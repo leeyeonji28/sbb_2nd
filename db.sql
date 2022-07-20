@@ -122,3 +122,6 @@ SELECT * FROM Answer;
 
 # viewCount 조회수 컬럼 추가
 ALTER TABLE Question ADD view_count INT(10) NOT NULL;
+
+# replyLike 좋아요 컬럼 추가
+ALTER TABLE answer ADD reply_like BOOLEAN NOT NULL;
