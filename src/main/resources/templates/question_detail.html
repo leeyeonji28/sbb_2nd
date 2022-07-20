@@ -7,5 +7,10 @@
 <body>
     <h2 th:text="${question.subject}"></h2>
     <div th:text="${question.content}"></div>
+
+    <form th:action="@{|/answer/create/${question.id}|}" method="post">
+        <textarea required placeholder="답변 내용을 등록해 주세요" name="content" rows="15"></textarea>
+        <input type="submit" value="작성">
+    </form>
 </body>
 </html>
