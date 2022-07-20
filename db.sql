@@ -119,3 +119,6 @@ content = "answer3",
 question_id = 3;
 
 SELECT * FROM Answer;
+
+# viewCount 조회수 컬럼 추가
+ALTER TABLE Question ADD view_count INT(10) NOT NULL;
